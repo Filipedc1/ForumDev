@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ForumDev.Data;
 using ForumDev.Services;
 using ForumDev.Data.Models;
+using ForumDev.Service;
 
 namespace ForumDev
 {
@@ -35,6 +36,7 @@ namespace ForumDev
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddScoped<IForum, ForumService>();
 
             services.AddMvc();
         }
