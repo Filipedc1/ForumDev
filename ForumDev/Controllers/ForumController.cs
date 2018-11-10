@@ -15,7 +15,7 @@ namespace ForumDev.Controllers
         #region Fields
 
         private readonly IForum forumService;
-        private readonly IPost postService;
+        //private readonly IPost postService;
 
         #endregion
 
