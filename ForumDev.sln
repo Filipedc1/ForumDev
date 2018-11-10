@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumDev", "ForumDev\ForumD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumDev.Data", "ForumDev.Data\ForumDev.Data.csproj", "{6D780273-A624-4BF9-B115-898D3C664369}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ForumDev.Service", "ForumDev.Service\ForumDev.Service.csproj", "{1C92BB1F-00E0-4D93-AC4F-006227DFA489}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6D780273-A624-4BF9-B115-898D3C664369}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D780273-A624-4BF9-B115-898D3C664369}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D780273-A624-4BF9-B115-898D3C664369}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C92BB1F-00E0-4D93-AC4F-006227DFA489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C92BB1F-00E0-4D93-AC4F-006227DFA489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C92BB1F-00E0-4D93-AC4F-006227DFA489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C92BB1F-00E0-4D93-AC4F-006227DFA489}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
