@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using ForumDev.Models;
+using ForumDev.Data.Models;
 
 namespace ForumDev.Data
 {
@@ -15,12 +15,9 @@ namespace ForumDev.Data
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
-        }
+        public DbSet<ApplicationUser> ApplicationUsers  { get; set; }
+        public DbSet<Forum> Forums                      { get; set; }
+        public DbSet<Post> Posts                        { get; set; }
+        public DbSet<PostReply> PostReplies             { get; set; }
     }
 }
