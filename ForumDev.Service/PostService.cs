@@ -2,6 +2,7 @@
 using ForumDev.Data.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,19 @@ namespace ForumDev.Service
 {
     public class PostService : IPost
     {
+        private readonly ApplicationDbContext dbContext;
+
+        #region Constructor
+
+        public PostService(ApplicationDbContext context)
+        {
+            dbContext = context;
+        }
+
+        #endregion
+
+        #region Methods
+
         public Task Add(Post post)
         {
             throw new NotImplementedException();
@@ -31,7 +45,7 @@ namespace ForumDev.Service
 
         public IEnumerable<Post> GetAll()
         {
-            throw new NotImplementedException();
+            return dbContext.Posts;
         }
 
         public Post GetById(int id)
@@ -43,5 +57,14 @@ namespace ForumDev.Service
         {
             throw new NotImplementedException();
         }
+
+        public IEnumerable<Post> GetPostsByForum(int id)
+        {
+            return dbContext.Forums
+                   .Where(forum => forum.Id == id).First()
+                   .Posts;
+        }
+
+        #endregion
     }
 }
