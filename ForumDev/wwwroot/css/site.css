@@ -226,10 +226,10 @@ body {
     border-radius: 0px !important;
 }
 
-    .btn-back:hover {
-        transition: ease-in 0.1s;
-        background-color: #1E88E5 !important;
-    }
+.btn-back:hover {
+    transition: ease-in 0.1s;
+    background-color: #1E88E5 !important;
+}
 
 .btn-newReply {
     background-color: #5C6BC0 !important;
@@ -238,10 +238,10 @@ body {
     border-radius: 0px !important;
 }
 
-    .btn-newReply:hover {
-        background-color: #9FA8DA !important;
-        transition: ease-in 0.1s;
-    }
+.btn-newReply:hover {
+    background-color: #9FA8DA !important;
+    transition: ease-in 0.1s;
+}
 
 .btn-file {
     color: white;
@@ -250,10 +250,10 @@ body {
     transition: ease 0.3s;
 }
 
-    .btn-file:hover {
-        background-color: #039BE5;
-        transition: ease 0.3s;
-    }
+.btn-file:hover {
+    background-color: #039BE5;
+    transition: ease 0.3s;
+}
 
 .btn-newPost {
     background-color: #c62828 !important;
@@ -262,11 +262,11 @@ body {
     border-radius: 0px !important;
 }
 
-    .btn-newPost:hover {
-        transition: ease-in 0.1s;
-        background-color: #e53935 !important;
-        color: #fff !important;
-    }
+.btn-newPost:hover {
+    transition: ease-in 0.1s;
+    background-color: #e53935 !important;
+    color: #fff !important;
+}
 
 .btn-submitPost {
     background-color: #00695C !important;
@@ -275,11 +275,11 @@ body {
     border-radius: 0px !important;
 }
 
-    .btn-submitPost:hover {
-        transition: ease-in 0.1s;
-        background-color: #00897B !important;
-        color: #fff !important;
-    }
+.btn-submitPost:hover {
+    transition: ease-in 0.1s;
+    background-color: #00897B !important;
+    color: #fff !important;
+}
 
 .btn-forumSearch {
     background: none !important;

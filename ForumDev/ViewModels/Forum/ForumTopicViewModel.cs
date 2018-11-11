@@ -10,5 +10,6 @@ namespace ForumDev.ViewModels.Forum
     {
         public ForumListingViewModel Forum              { get; set; }
         public IEnumerable<PostListingViewModel> Posts  { get; set; }
+        public string SearchQuery                       { get; set; }
     }
 }
