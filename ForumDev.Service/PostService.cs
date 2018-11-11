@@ -24,9 +24,10 @@ namespace ForumDev.Service
 
         #region Methods
 
-        public Task Add(Post post)
+        public async Task Add(Post post)
         {
-            throw new NotImplementedException();
+            await dbContext.AddAsync(post);
+            await dbContext.SaveChangesAsync();
         }
 
         public Task AddReply(PostReply reply)
