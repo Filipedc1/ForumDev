@@ -15,15 +15,16 @@ namespace ForumDev.Controllers
         #region Fields
 
         private readonly IForum forumService;
-        //private readonly IPost postService;
+        private readonly IPost postService;
 
         #endregion
 
         #region Constructor
 
-        public ForumController(IForum forumService)
+        public ForumController(IForum forumService, IPost postService)
         {
             this.forumService = forumService;
+            this.postService = postService;
         }
 
         #endregion
@@ -48,10 +49,12 @@ namespace ForumDev.Controllers
             return View(viewModel);
         }
 
-        public IActionResult Topic(int id)
+        public IActionResult Topic(int id, string searchQuery)
         {
             var forum = forumService.GetById(id);
-            var posts = forum.Posts;
+            var posts = new List<Post>();
+
+            posts = postService.GetFilteredPosts(forum, searchQuery).ToList();
 
             var postListings = posts.Select(post => new PostListingViewModel
             {
@@ -72,6 +75,12 @@ namespace ForumDev.Controllers
             };
 
             return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Search(int id, string searchQuery)
+        {
+            return RedirectToAction("Topic", new { id, searchQuery });
         }
 
         #endregion
