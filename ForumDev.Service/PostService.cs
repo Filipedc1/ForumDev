@@ -47,7 +47,10 @@ namespace ForumDev.Service
 
         public IEnumerable<Post> GetAll()
         {
-            return dbContext.Posts;
+            return dbContext.Posts
+                    .Include(post => post.User)
+                    .Include(post => post.Replies).ThenInclude(reply => reply.User)
+                    .Include(post => post.Forum);
         }
 
         public Post GetById(int id)
@@ -62,6 +65,11 @@ namespace ForumDev.Service
         public IEnumerable<Post> GetFilteredPosts(string searchQuery)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Post> GetLatestPosts(int numOfPosts)
+        {
+            return GetAll().OrderByDescending(post => post.Created).Take(numOfPosts);
         }
 
         public IEnumerable<Post> GetPostsByForum(int id)
