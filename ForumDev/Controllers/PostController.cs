@@ -6,6 +6,7 @@ using ForumDev.Data;
 using ForumDev.Data.Models;
 using ForumDev.ViewModels.Post;
 using ForumDev.ViewModels.Reply;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,6 +62,7 @@ namespace ForumDev.Controllers
             return View(viewModel);
         }
 
+        [Authorize]
         public IActionResult Create(int id)
         {
             var forum = forumService.GetById(id);
@@ -76,8 +78,8 @@ namespace ForumDev.Controllers
             return View(viemModel);
         }
 
-
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> AddPost(NewPostViewModel model)
         {
             var userId = userManager.GetUserId(User);

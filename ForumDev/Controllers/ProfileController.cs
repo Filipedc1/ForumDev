@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ForumDev.Data;
 using ForumDev.Data.Models;
 using ForumDev.ViewModels.ApplicationUser;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -13,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ForumDev.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
         #region Fields
@@ -38,6 +40,7 @@ namespace ForumDev.Controllers
 
         #region Actions
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             var profiles = userService.GetAll()

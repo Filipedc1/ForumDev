@@ -7,6 +7,7 @@ using ForumDev.Data;
 using ForumDev.Data.Models;
 using ForumDev.ViewModels.Forum;
 using ForumDev.ViewModels.Post;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -94,6 +95,7 @@ namespace ForumDev.Controllers
             return RedirectToAction("Topic", new { id, searchQuery });
         }
 
+        [Authorize(Roles ="Admin")]
         public IActionResult Create()
         {
             var viewMod = new AddForumViewModel();
@@ -101,6 +103,7 @@ namespace ForumDev.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddForum(AddForumViewModel model)
         {
             string imageUrl = "/images/users/default.png";

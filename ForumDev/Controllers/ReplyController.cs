@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using ForumDev.Data;
 using ForumDev.Data.Models;
 using ForumDev.ViewModels.Reply;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ForumDev.Controllers
 {
+    [Authorize]
     public class ReplyController : Controller
     {
         #region Fields
@@ -70,8 +72,6 @@ namespace ForumDev.Controllers
 
             return RedirectToAction("Index", "Post", new { id = model.PostId });
         }
-
-
 
         #endregion
 
