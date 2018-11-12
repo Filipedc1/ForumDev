@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ForumDev.Data;
 using ForumDev.Data.Models;
+using ForumDev.ViewModels.ApplicationUser;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -31,12 +33,23 @@ namespace ForumDev.Controllers
 
         #region Actions
 
-        public IActionResult Detail(string id)
+        public async Task<IActionResult> Detail(string id)
         {
+            var user = userService.GetById(id);
+            var userRoles = await userManager.GetRolesAsync(user);
 
+            var viewMod = new ProfileViewModel
+            {
+                UserId = user.Id,
+                Username = user.UserName,
+                UserRating = user.Rating.ToString(),
+                Email = user.Email,
+                ProfileImageUrl = user.ProfileImageUrl,
+                MemberSince = user.MemberSince,
+                IsAdmin = userRoles.Contains("Admin")
+            };
 
-
-            return View();
+            return View(viewMod);
         }
 
         #endregion
