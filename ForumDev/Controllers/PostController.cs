@@ -17,6 +17,7 @@ namespace ForumDev.Controllers
 
         private readonly IPost postService;
         private readonly IForum forumService;
+        private readonly IApplicationUser userService;
 
         private static UserManager<ApplicationUser> userManager;
 
@@ -24,10 +25,11 @@ namespace ForumDev.Controllers
 
         #region Constructor
 
-        public PostController(IPost postService, IForum forumService, UserManager<ApplicationUser> manager)
+        public PostController(IPost postService, IForum forumService, IApplicationUser userService, UserManager<ApplicationUser> manager)
         {
             this.postService = postService;
             this.forumService = forumService;
+            this.userService = userService;
             userManager = manager;
         }
 
@@ -83,6 +85,7 @@ namespace ForumDev.Controllers
             var post = BuildPost(model, user);
 
             await postService.Add(post);
+            await userService.UpdateUserRating(userId, typeof(Post));
 
             return RedirectToAction("Index", "Post", new { id = post.Id });
         }

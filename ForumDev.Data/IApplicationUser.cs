@@ -12,6 +12,6 @@ namespace ForumDev.Data
         IEnumerable<ApplicationUser> GetAll();
 
         Task SetProfileImage(string id, string url);
-        Task IncrementRating(string id, Type type);
+        Task UpdateUserRating(string id, Type type);
     }
 }

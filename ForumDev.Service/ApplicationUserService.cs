@@ -27,9 +27,27 @@ namespace ForumDev.Service
             return GetAll().FirstOrDefault(user => user.Id == id);
         }
 
-        public Task IncrementRating(string id, Type type)
+        public async Task UpdateUserRating(string userId, Type type)
         {
-            throw new NotImplementedException();
+            var user = GetById(userId);
+            user.Rating = CalculateUserRating(type, user.Rating);
+            await dbContext.SaveChangesAsync();
+        }
+
+        private int CalculateUserRating(Type type, int userRating)
+        {
+            int inc = 0;
+
+            if (type == typeof(Post))
+            {
+                inc = 1;
+            }
+            else if (type == typeof(PostReply))
+            {
+                inc = 3;
+            }
+
+            return userRating + inc;
         }
 
         public async Task SetProfileImage(string id, string url)
