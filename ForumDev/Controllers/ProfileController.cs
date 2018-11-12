@@ -73,7 +73,6 @@ namespace ForumDev.Controllers
             return RedirectToAction("Detail", "Profile", new { id = userId });
         }
 
-
         #endregion
 
         public string UploadImage(IFormFile img)

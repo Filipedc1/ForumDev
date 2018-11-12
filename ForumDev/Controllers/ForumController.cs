@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ForumDev.Data;
 using ForumDev.Data.Models;
 using ForumDev.ViewModels.Forum;
 using ForumDev.ViewModels.Post;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ForumDev.Controllers
@@ -16,15 +19,19 @@ namespace ForumDev.Controllers
 
         private readonly IForum forumService;
         private readonly IPost postService;
+        private readonly IUpload uploadService;
+        private readonly IHostingEnvironment _hosting;
 
         #endregion
 
         #region Constructor
 
-        public ForumController(IForum forumService, IPost postService)
+        public ForumController(IForum forumService, IPost postService, IUpload uploadService, IHostingEnvironment he)
         {
             this.forumService = forumService;
             this.postService = postService;
+            this.uploadService = uploadService;
+            this._hosting = he;
         }
 
         #endregion
@@ -83,6 +90,34 @@ namespace ForumDev.Controllers
             return RedirectToAction("Topic", new { id, searchQuery });
         }
 
+        public IActionResult Create()
+        {
+            var viewMod = new AddForumViewModel();
+            return View(viewMod);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddForum(AddForumViewModel model)
+        {
+            string imageUrl = "/images/users/default.png";
+
+            if (model.ImageUpload != null)
+            {
+                imageUrl = UploadForumImage(model.ImageUpload);
+            }
+
+            var forum = new Forum()
+            {
+                Title = model.Title,
+                Description = model.Description,
+                Created = DateTime.Now,
+                ImageURL = imageUrl
+            };
+
+            await forumService.Create(forum);
+            return RedirectToAction("Index", "Forum");
+        }
+
         #endregion
 
         #region Helpers
@@ -102,6 +137,13 @@ namespace ForumDev.Controllers
                 Description = forum.Description,
                 ImageUrl = forum.ImageURL
             };
+        }
+
+        public string UploadForumImage(IFormFile img)
+        {
+            var filePath = Path.Combine(_hosting.WebRootPath + "\\images", Path.GetFileName(img.FileName));
+            img.CopyTo(new FileStream(filePath, FileMode.Create));
+            return filePath;
         }
 
         #endregion
