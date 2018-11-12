@@ -54,7 +54,7 @@ namespace ForumDev.Controllers
                 EmptySearchResults = areNoResults
             };
 
-            return View();
+            return View(viewMod);
         }
 
         [HttpPost]
