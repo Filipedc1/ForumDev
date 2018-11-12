@@ -21,12 +21,16 @@ namespace ForumDev.Controllers
 
         #endregion
 
-        #region Actions
+        #region Constructor
 
         public HomeController(IPost postService)
         {
             this.postService = postService;
         }
+
+        #endregion
+
+        #region Actions
 
         public IActionResult Index()
         {
