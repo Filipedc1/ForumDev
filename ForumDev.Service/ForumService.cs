@@ -25,14 +25,17 @@ namespace ForumDev.Service
 
         #region Methods
 
-        public Task Create(Forum forum)
+        public async Task Create(Forum forum)
         {
-            throw new NotImplementedException();
+            dbContext.Forums.Add(forum);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var forum = GetById(id);
+            dbContext.Forums.Remove(forum);
+            await dbContext.SaveChangesAsync();
         }
 
         public IEnumerable<Forum> GetAll()

@@ -104,6 +104,7 @@ namespace ForumDev.Controllers
             if (model.ImageUpload != null)
             {
                 imageUrl = UploadForumImage(model.ImageUpload);
+                imageUrl = "/images/" + Path.GetFileName(model.ImageUpload.FileName);
             }
 
             var forum = new Forum()
