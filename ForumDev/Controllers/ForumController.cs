@@ -45,12 +45,16 @@ namespace ForumDev.Controllers
                     {
                         Id = forum.Id,
                         Title = forum.Title,
-                        Description = forum.Description
+                        Description = forum.Description,
+                        NumberOfPosts = forum.Posts?.Count() ?? 0,
+                        NumberOfUsers = forumService.GetActiveUsers(forum.Id).Count(),
+                        ImageUrl = forum.ImageURL,
+                        HasRecentPost = forumService.HasRecentPost(forum.Id)
                     });
 
             var viewModel = new ForumIndexViewModel()
             {
-                ForumList = forumsList
+                ForumList = forumsList.OrderBy(f => f.Title)
             };
 
             return View(viewModel);

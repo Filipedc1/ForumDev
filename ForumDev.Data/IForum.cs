@@ -10,11 +10,12 @@ namespace ForumDev.Data
     {
         Forum GetById(int id);
         IEnumerable<Forum> GetAll();
-        IEnumerable<ApplicationUser> GetAllActiveUsers();
+        IEnumerable<ApplicationUser> GetActiveUsers(int id);
 
         Task Create(Forum forum);
         Task Delete(int id);
         Task UpdateForumTitle(int forumId, string newTitle);
         Task UpdateForumDescription(int forumId, string newDescription);
+        bool HasRecentPost(int id);
     }
 }

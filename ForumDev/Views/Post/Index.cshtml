@@ -18,7 +18,7 @@
             <a asp-controller="Profile" asp-action="Detail" asp-route-id="@Model.AuthorId">
                 @Model.AuthorName
             </a>
-            <span class="postData">@Model.Created</span>
+            <span class="postDate">@Model.Created</span>
             @if (Model.IsAuthorAdmin)
             {
                 <span class="isAdmin smaller">Admin</span>
@@ -59,7 +59,7 @@
                         <div class="isAdmin smaller">Admin</div>
                         <br/>
                     }
-                    <span>@reply.Created</span>
+                    <span class="postDate">@reply.Created</span>
                 </div>
                 <div class="col-md-9 replyContentContainer">
                     <div class="postContent">

@@ -38,6 +38,27 @@ namespace ForumDev.Controllers
 
         #region Actions
 
+        public IActionResult Index()
+        {
+            var profiles = userService.GetAll()
+                .OrderByDescending(user => user.Rating)
+                .Select(u => new ProfileViewModel
+                {
+                    Email = u.Email,
+                    Username = u.UserName,
+                    ProfileImageUrl = u.ProfileImageUrl,
+                    UserRating = u.Rating.ToString(),
+                    MemberSince = u.MemberSince
+                });
+
+            var viewMod = new ProfileListViewModel()
+            {
+                Profiles = profiles
+            };
+
+            return View(viewMod);
+        }
+
         public async Task<IActionResult> Detail(string id)
         {
             var user = userService.GetById(id);
