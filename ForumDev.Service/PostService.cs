@@ -30,9 +30,10 @@ namespace ForumDev.Service
             await dbContext.SaveChangesAsync();
         }
 
-        public Task AddReply(PostReply reply)
+        public async Task AddReply(PostReply reply)
         {
-            throw new NotImplementedException();
+            dbContext.PostReplies.Add(reply);
+            await dbContext.SaveChangesAsync();
         }
 
         public Task Delete(int id)
