@@ -32,10 +32,10 @@ namespace ForumDev.Service
             throw new NotImplementedException();
         }
 
-        public async Task SetProfileImage(string id, Uri uri)
+        public async Task SetProfileImage(string id, string url)
         {
             var user = GetById(id);
-            user.ProfileImageUrl = uri.AbsoluteUri;
+            user.ProfileImageUrl = url;
             dbContext.Update(user);
             await dbContext.SaveChangesAsync();
         }
